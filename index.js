@@ -1,16 +1,15 @@
-onst baseURL = 'https://api.github.com';
-// change to pass all tests
+const baseURL = 'https://api.github.com';
 const user = '<YOUR_USERNAME>';
 
-function getToken() {
-  //change to your token to run in browser, but set
-  //back to '' before committing so all tests pass
-  return '';
-}
+ function getToken() {	function getToken() {
+  //change to your token to run in browser, but set	  //change to your token to run in browser, but set
+  //back to '' before committing so all tests pass	  //back to '' before committing so all tests pass
+@@ -6,17 +9,50 @@ function getToken() {
 
-function forkRepo() {
-  const repo = 'learn-co-curriculum/js-ajax-fetch-lab';
-  const url = `${baseURL}/repos/${repo}/forks`;
+
+ function forkRepo() {	function forkRepo() {
+  const repo = 'learn-co-curriculum/js-ajax-fetch-lab';	  const repo = 'learn-co-curriculum/js-ajax-fetch-lab';
+  //use fetch to fork it!	  const url = `${baseURL}/repos/${repo}/forks`;
   fetch(url, {
     method: 'POST',
     headers: {
@@ -19,23 +18,25 @@ function forkRepo() {
   })
     .then(res => res.json())
     .then(json => showResults(json));
-}
+}	}
 
-function showResults(json) {
-  document.getElementById('results').innerHTML = `<a href=${json.html_url}>${
+
+ function showResults(json) {	function showResults(json) {
+  //use this function to display the results from forking via the API	  document.getElementById('results').innerHTML = `<a href=${json.html_url}>${
     json.html_url
   }</a>`;
-}
+}	}
 
-function createIssue() {
-  const repo = `${user}/js-ajax-fetch-lab`;
+
+ function createIssue() {	function createIssue() {
+  //use this function to create an issue based on the values input in index.html	  const repo = `${user}/js-ajax-fetch-lab`;
   const url = `${baseURL}/repos/${repo}/issues`;
   const postData = {
     title: document.getElementById('title').value,
     body: document.getElementById('body').value
   };
 
-  fetch(url, {
+   fetch (url, {
     method: 'POST',
     body: JSON.stringify(postData),
     headers: {
@@ -44,10 +45,11 @@ function createIssue() {
   })
     .then(res => res.json())
     .then(json => getIssues());
-}
+}	}
 
-function getIssues() {
-  const repo = `${user}/js-ajax-fetch-lab`;
+
+ function getIssues() {	function getIssues() {
+  //once an issue is submitted, fetch all open issues to see the issues you are creating	  const repo = `${user}/js-ajax-fetch-lab`;
   const url = `${baseURL}/repos/${repo}/issues`;
   fetch(url, {
     headers: {
@@ -56,4 +58,4 @@ function getIssues() {
   })
     .then(res => res.json())
     .then(json => console.log(json));
-}
+}	}
